@@ -17,10 +17,35 @@
   font-size: 3rem;
 }
 
+#loading
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  font-size: 3rem;
+}
+
+#loading::after
+{
+  content: ".";
+  animation-name: fade-away;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
 #search
 {
   position: absolute;
-  top: 10px;
+  top: 560px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -29,11 +54,14 @@
 
 #searchBtn
 {
+  height: 30px;
+  width: 90px;
   font-size: 1.3rem;
   background-color: #FFF;
   border: 1px solid black;
   box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.5);
   border-radius: 3px;
+  user-select: none;
 }
 
 #searchBtn:active
@@ -59,7 +87,7 @@
 
 .record:nth-child(odd)
 {
-  background-color: #DDD;
+  background-color: rgb(230, 230, 230);
 }
 
 #stats
@@ -78,7 +106,7 @@
 
 .statbox:nth-child(odd)
 {
-  background-color: rgb(204, 204, 204);
+  background-color: rgb(245, 245, 245);
 }
 
 .x2
@@ -99,7 +127,7 @@
 
 .recordProp
 {
-  width: 150px;
+  width: 170px;
 }
 
 
@@ -119,18 +147,21 @@
 .details
 {
   position: fixed;
-  display: none;
   width: 400px;
-  height: 200px;
+  height: 155px;
   z-index: 10;
   background-color: #FFF;
-  top: 10px;
+  top: -170px;
   left: calc(50% - 200px);
   pointer-events: none;
   box-sizing: border-box;
   border: 1px solid black;
   border-radius: 10px;
   box-shadow: 3px 3px 5px 2px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition-duration: 0.125s;
 }
 
 .details > p.x2 
@@ -181,7 +212,9 @@ nav
   font-size: 2rem;
 }
 
-nav span:hover
+nav, nav * {user-select: none;}
+
+.navBtn:hover
 {
   color: #888;
   cursor: pointer;
@@ -194,19 +227,26 @@ nav span:hover
   color: transparent;
 }
 
-.record:nth-child(even):hover
-{
-  background-color: #EEE;
-}
-
-.record:nth-child(odd):hover
+.record:hover
 {
   background-color: #CCC;
 }
 
 .record:hover > .details
 {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  transform: translateY(180px);
+}
+
+.unclickable
+{
+  pointer-events: none;
+  background-color: #888 !important;
+  opacity: 0.75;
+}
+
+@keyframes fade-away 
+{
+  from{opacity: 1;}
+  
+  to{opacity: 0;}
 }

@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from './Context'
 import { RetrievedData, Statistics } from './Interfaces'
-import { API } from './VARS'
+import { API_PROTOCOL, API_HOST, API_PORT } from './VARS'
+
 
 
 function Stats() {
@@ -10,11 +11,10 @@ function Stats() {
   
   useEffect(()=>
   {
-    fetch("http://"+API+":8000/weathers/statistics")
+    fetch(`${API_PROTOCOL}//${API_HOST}${API_PORT}/weathers/statistics`)
     .then((r) => r.json())
-      .then((r: Statistics)=> {console.log(r); setStats(r)})
-        .finally(()=>console.log("STATS DONE"));
-  }, [])
+      .then((r: Statistics)=> setStats(r))
+  }, [data])
 
   return (
     <div id="stats">
@@ -24,9 +24,9 @@ function Stats() {
       </div>
       <div className="statbox" id='temperatures'>
         <p className='x2'>Temperatures ({stats.temperature.unit})</p>
-        <p>Minimum: {stats.temperature.min || "Unknown"}</p>
-        <p>Maximum: {stats.temperature.max || "Unknown"}</p>
-        <p>Average: {stats.temperature.avg || "Unknown"}</p>
+        <p>Minimum: {stats.temperature.min.toFixed(1) || "Unknown"}</p>
+        <p>Maximum: {stats.temperature.max.toFixed(1) || "Unknown"}</p>
+        <p>Average: {stats.temperature.avg.toFixed(1) || "Unknown"}</p>
       </div>
       <div className="statbox" id='total'>
         <p>Total number of searches:</p>

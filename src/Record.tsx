@@ -6,8 +6,8 @@ function Record(props: any) {
             <div className="recordId">{props.data.id}</div>
             <p className='recordProp'>Country: {props.data.country}</p>
             <p className='recordProp'>City: {props.data.city}</p>
-            <p className='recordProp'>Latitude: {props.data.lat}</p>
-            <p className='recordProp'>Longitude: {props.data.lon}</p>
+            <p className='recordProp'>Latitude: {props.data.lat.toFixed(2)}</p>
+            <p className='recordProp'>Longitude: {props.data.lon.toFixed(2)}</p>
 
             <div className='recordRight'>
                 <div className="recordDescription">{props.data.weather.description}</div>

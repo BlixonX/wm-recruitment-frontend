@@ -49,3 +49,9 @@ export interface Statistics
     },
     top_queried: string
 }
+
+export interface Coordinates
+{
+    lat: number,
+    lng: number
+}
